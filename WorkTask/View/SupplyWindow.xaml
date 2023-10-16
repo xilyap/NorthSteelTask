@@ -1,0 +1,36 @@
+﻿<Window x:Class="WorkTask.View.SupplyWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WorkTask.View"
+        mc:Ignorable="d"
+        Title="SupplyWindow" Height="476" Width="800" ShowInTaskbar="False" ResizeMode="NoResize" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="77*"/>
+            <ColumnDefinition Width="323*"/>
+        </Grid.ColumnDefinitions>
+        <DatePicker x:Name="SupplyDatePicker" HorizontalAlignment="Left" Margin="11,38,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="GoodComboBox" HorizontalAlignment="Left" Margin="11,92,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="WeightTextBox" HorizontalAlignment="Left" Margin="11,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="PriceTextBox" HorizontalAlignment="Left" Margin="11,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Дата поставки" HorizontalAlignment="Left" Margin="11,12,0,0" VerticalAlignment="Top"/>
+        <Label Content="Товар" HorizontalAlignment="Left" Margin="11,66,0,0" VerticalAlignment="Top"/>
+        <Label Content="Вес в кг" HorizontalAlignment="Left" Margin="11,123,0,0" VerticalAlignment="Top"/>
+        <Label Content="Цена" HorizontalAlignment="Left" Margin="10,172,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="SupplyRegisterBtn" Content="Зарегистрировать" Margin="11,0,23,10" Click="SupplyRegisterBtn_Click" Height="34" VerticalAlignment="Bottom"/>
+        <DataGrid x:Name="GoodsDataGrid" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="3,10,19,45" Grid.Column="1"
+                  AutoGenerateColumns="False" IsReadOnly="True"
+                  >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Товар" Binding="{Binding Path=Title}" Width="200" />
+                <DataGridTextColumn Header="Вес" Binding="{Binding Path=Weight}" Width="100" />
+                <DataGridTextColumn Header="Цена" Binding="{Binding Path=Price}" Width="100" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="AddGoodBtn" Content="Добавить товар" HorizontalAlignment="Left" Margin="10,236,0,0" VerticalAlignment="Top" Width="120" Click="AddGoodBtn_Click"/>
+        <Button x:Name="SupplyRemoveGoodBtn" Content="Удалить товар" Margin="507,0,19,10" Height="20" VerticalAlignment="Bottom" Grid.Column="1" Click="SupplyRemoveGoodBtn_Click"/>
+
+    </Grid>
+</Window>
