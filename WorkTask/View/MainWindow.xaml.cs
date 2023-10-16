@@ -27,12 +27,22 @@ namespace WorkTask.View
         {
             var config = new ConfigurationBuilder().SetBasePath(AppDomain.CurrentDomain.BaseDirectory).AddJsonFile("appsettings.json").Build();
             var connectionString = config.GetConnectionString("MainDB");
+            
             var optionsBuilder = new DbContextOptionsBuilder<WorkTaskContext>();
             var options = optionsBuilder.UseSqlServer(connectionString).Options;
 
             context = new WorkTaskContext(options);
-            //context.Database.EnsureDeleted(); 
-            //context.Database.EnsureCreated(); -- Подключить для тестов без заполнения БД
+
+            bool contextState;
+           
+            if (bool.TryParse(config["ContextEnsureCreatedDeleted"], out contextState))
+            {
+                if (contextState)
+                {
+                    context.Database.EnsureDeleted(); 
+                    context.Database.EnsureCreated();
+                }
+            }
 
             InitializeComponent();
         }
