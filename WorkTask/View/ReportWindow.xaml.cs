@@ -22,7 +22,6 @@ namespace WorkTask.View
     /// </summary>
     public partial class ReportWindow : Window
     {
-        List<SupplyGood> supplyGoodList;
         List<Supply> supplies;
         WorkTaskContext context;
         public ReportWindow()

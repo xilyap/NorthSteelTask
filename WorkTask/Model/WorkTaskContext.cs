@@ -23,9 +23,6 @@ public partial class WorkTaskContext : DbContext
 
     public virtual DbSet<SupplyGood> SupplyGoods { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=.\\SQLEXPRESS;Database=WorkTask;Trusted_Connection=True;TrustServerCertificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -76,6 +73,8 @@ public partial class WorkTaskContext : DbContext
             entity.HasOne(d => d.Provider).WithMany(p => p.Supplies)
                 .HasForeignKey(d => d.ProviderId)
                 .HasConstraintName("FK__Supply__Provider__619B8048");
+            entity.HasData(
+                new Supply() { Date = DateTime.Now, Id = 1, ProviderId = 1, } );
         });
 
         modelBuilder.Entity<SupplyGood>(entity =>
@@ -91,6 +90,10 @@ public partial class WorkTaskContext : DbContext
             entity.HasOne(d => d.Supply).WithMany(p => p.SupplyGoods)
                 .HasForeignKey(d => d.SupplyId)
                 .HasConstraintName("FK__SupplyGoo__Suppl__6477ECF3");
+            entity.HasData(
+                new SupplyGood() { Id = 1, GoodId = 8, SupplyId = 1, Weight = 5.5f, Price = 3300 },
+                    new SupplyGood() { Id = 2, GoodId = 7, SupplyId = 1, Weight = 6f, Price = 5900 }
+                );
         });
 
         OnModelCreatingPartial(modelBuilder);

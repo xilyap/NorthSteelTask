@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,9 +25,14 @@ namespace WorkTask.View
         WorkTaskContext context;
         public MainWindow()
         {
-            context = new WorkTaskContext();
-            //context.Database.EnsureDeleted();
-            context.Database.EnsureCreated();
+            var config = new ConfigurationBuilder().SetBasePath(AppDomain.CurrentDomain.BaseDirectory).AddJsonFile("appsettings.json").Build();
+            var connectionString = config.GetConnectionString("MainDB");
+            var optionsBuilder = new DbContextOptionsBuilder<WorkTaskContext>();
+            var options = optionsBuilder.UseSqlServer(connectionString).Options;
+
+            context = new WorkTaskContext(options);
+            //context.Database.EnsureDeleted(); 
+            //context.Database.EnsureCreated(); -- Подключить для тестов без заполнения БД
 
             InitializeComponent();
         }
