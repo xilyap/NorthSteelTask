@@ -11,9 +11,9 @@ public partial class SupplyGood
 
     public int? GoodId { get; set; }
 
-    public int Weight { get; set; }
+    public float Weight { get; set; }
 
-    public int Price { get; set; }
+    public float Price { get; set; }
 
     public virtual Good? Good { get; set; }
 

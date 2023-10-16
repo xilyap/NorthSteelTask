@@ -73,8 +73,8 @@ namespace WorkTask.View
             if (GoodComboBox.SelectedItem != null && isPositiveNumber(WeightTextBox.Text) && isPositiveNumber(PriceTextBox.Text))
             {
                 SupplyGood good = new SupplyGood();
-                good.Price = int.Parse(PriceTextBox.Text);
-                good.Weight= int.Parse(WeightTextBox.Text);
+                good.Price = float.Parse(PriceTextBox.Text);
+                good.Weight= float.Parse(WeightTextBox.Text);
                 good.Good = (Good)GoodComboBox.SelectedItem;
                 good.GoodId = good.Id;
                 GoodForDatagrid dgGood = new GoodForDatagrid() { Good = good, Price = good.Price, Title = ((Good)GoodComboBox.SelectedItem).Name, Weight=good.Weight }; 
