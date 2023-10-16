@@ -49,5 +49,11 @@ namespace WorkTask.View
             ReportWindow window = new ReportWindow(context);
             window.Show();
         }
+
+        private void SupplyPeriodReport_Click(object sender, RoutedEventArgs e)
+        {
+            ReportPerRangeWindow window = new ReportPerRangeWindow(context);
+            window.Show();
+        }
     }
 }
