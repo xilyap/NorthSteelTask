@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WorkTask.View"
         mc:Ignorable="d"
-        Title="SupplyWindow" Height="476" Width="800" ShowInTaskbar="False" ResizeMode="NoResize" Loaded="Window_Loaded">
+        Title="SupplyWindow" Height="476" Width="800" ResizeMode="NoResize" Loaded="Window_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="77*"/>
@@ -24,7 +24,7 @@
                   AutoGenerateColumns="False" IsReadOnly="True"
                   >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Товар" Binding="{Binding Path=Title}" Width="200" />
+                <DataGridTextColumn Header="Товар" Binding="{Binding Path=Good}" Width="200" />
                 <DataGridTextColumn Header="Вес" Binding="{Binding Path=Weight}" Width="100" />
                 <DataGridTextColumn Header="Цена" Binding="{Binding Path=Price}" Width="100" />
             </DataGrid.Columns>

@@ -42,13 +42,24 @@ namespace WorkTask.View
         {
             if (SupplyDatePicker.SelectedDate != null && supplyGoods.Count>0)
             {
-                Supply supply = new Supply();
-                supply.Date = (DateTime)SupplyDatePicker.SelectedDate;
-                supply.Provider = goodsProvider;
-                supply.ProviderId = goodsProvider.Id;
-                supply.SupplyGoods = supplyGoods.Select(item => item.Good).ToList();
-                context.Supplies.Add(supply);
-                context.SaveChanges();
+                MessageBoxResult result = MessageBox.Show("Зарегистрировать поставку?", "", MessageBoxButton.YesNo);
+                switch (result)
+                {
+                    case MessageBoxResult.Yes:
+                        Supply supply = new Supply();
+                        supply.Date = (DateTime)SupplyDatePicker.SelectedDate;
+                        supply.Provider = goodsProvider;
+                        supply.ProviderId = goodsProvider.Id;
+                        supply.SupplyGoods = supplyGoods.Select(item => item.Good).ToList();
+                        context.Supplies.Add(supply);
+                        context.SaveChanges();
+                        Close();
+                        break;
+                    case MessageBoxResult.No:
+                        break;
+
+                }
+                
             }
         }
 
@@ -73,8 +84,8 @@ namespace WorkTask.View
             if (GoodComboBox.SelectedItem != null && isPositiveNumber(WeightTextBox.Text) && isPositiveNumber(PriceTextBox.Text))
             {
                 SupplyGood good = new SupplyGood();
-                good.Price = float.Parse(PriceTextBox.Text);
-                good.Weight= float.Parse(WeightTextBox.Text);
+                good.Price = float.Parse(PriceTextBox.Text, NumberStyles.Any, CultureInfo.InvariantCulture);
+                good.Weight= float.Parse(WeightTextBox.Text, NumberStyles.Any, CultureInfo.InvariantCulture);
                 good.Good = (Good)GoodComboBox.SelectedItem;
                 good.GoodId = good.Id;
                 GoodForDatagrid dgGood = new GoodForDatagrid() { Good = good, Price = good.Price, Title = ((Good)GoodComboBox.SelectedItem).Name, Weight=good.Weight }; 

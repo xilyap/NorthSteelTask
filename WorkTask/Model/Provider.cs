@@ -12,4 +12,9 @@ public partial class Provider
     public virtual ICollection<Good> Goods { get; set; } = new List<Good>();
 
     public virtual ICollection<Supply> Supplies { get; set; } = new List<Supply>();
+
+    public override string? ToString()
+    {
+        return Name;
+    }
 }

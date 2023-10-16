@@ -18,4 +18,9 @@ public partial class SupplyGood
     public virtual Good? Good { get; set; }
 
     public virtual Supply? Supply { get; set; }
+
+    public override string? ToString()
+    {
+        return Good.ToString();
+    }
 }

@@ -24,7 +24,7 @@ namespace WorkTask.View
         public MainWindow()
         {
             context = new WorkTaskContext();
-            context.Database.EnsureDeleted();
+            //context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
 
             InitializeComponent();

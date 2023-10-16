@@ -14,4 +14,9 @@ public partial class Good
     public virtual Provider? Provider { get; set; }
 
     public virtual ICollection<SupplyGood> SupplyGoods { get; set; } = new List<SupplyGood>();
+
+    public override string? ToString()
+    {
+        return Name;
+    }
 }

@@ -5,14 +5,37 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WorkTask.View"
         mc:Ignorable="d"
-        Title="ReportWindow" Height="450" Width="800" ResizeMode="NoResize">
-    <Grid x:Name="FirstDatePicker">
-        <DataGrid x:Name="SupplyDataGrid" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,32,447,0"/>
-        <DatePicker HorizontalAlignment="Left" Margin="39,5,0,0" VerticalAlignment="Top"/>
-        <DatePicker x:Name="SecondDatePicker" HorizontalAlignment="Left" Margin="183,5,0,0" VerticalAlignment="Top"/>
-        <Label Content="От" HorizontalAlignment="Left" Margin="10,4,0,0" VerticalAlignment="Top" Height="26"/>
-        <Label Content="До" HorizontalAlignment="Left" Margin="154,4,0,0" VerticalAlignment="Top" Height="26"/>
-        <DataGrid x:Name="SupplyGoodsDataGrid" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="447,32,10,0"/>
+        Title="ReportWindow" Height="589" Width="800" ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="182*"/>
+            <RowDefinition Height="9*"/>
+        </Grid.RowDefinitions>
+        <DataGrid x:Name="SupplyDataGrid" Margin="10,32,447,0" IsReadOnly="True" SelectionChanged="SupplyDataGrid_SelectionChanged" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Поставщик" Binding="{Binding Path=Provider}"/>
+                <DataGridTextColumn Header="Дата поставки" Binding="{Binding Path=Date}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <DatePicker x:Name="FirstDatePicker" HorizontalAlignment="Left" Margin="39,5,0,0" VerticalAlignment="Top" SelectedDateChanged="DateChanged" Height="24" Width="100"/>
+        <DatePicker x:Name="SecondDatePicker" HorizontalAlignment="Left" Margin="183,5,0,0" VerticalAlignment="Top" SelectedDateChanged="DateChanged" Height="24" Width="100"/>
+        <Label Content="От" HorizontalAlignment="Left" Margin="10,4,0,0" VerticalAlignment="Top" Height="26" Width="24"/>
+        <Label Content="До" HorizontalAlignment="Left" Margin="154,4,0,0" VerticalAlignment="Top" Height="26" Width="25"/>
+        <DataGrid x:Name="SupplyGoodsDataGrid" Margin="447,32,10,0" IsReadOnly="True" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Товар" Binding="{Binding Path=Good}" />
+                <DataGridTextColumn Header="Вес" Binding="{Binding Path=Weight}"  />
+                <DataGridTextColumn Header="Цена" Binding="{Binding Path=Price}"  />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid  Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="14*"/>
+                <ColumnDefinition Width="11*"/>
+            </Grid.ColumnDefinitions>
+            <Label x:Name="SummaryLabel" Content="Итог" Grid.Column="1"/>
+        </Grid>
+
 
     </Grid>
 </Window>

@@ -40,6 +40,16 @@ public partial class WorkTaskContext : DbContext
             entity.HasOne(d => d.Provider).WithMany(p => p.Goods)
                 .HasForeignKey(d => d.ProviderId)
                 .HasConstraintName("FK__Good__ProviderId__5EBF139D");
+            entity.HasData(
+               new Good { Id = 1, Name = "Семечки подсолнечные жареные", ProviderId = 2 },
+               new Good { Id = 2, Name = "Семечки подсолнечные", ProviderId = 2 },
+               new Good { Id = 3, Name = "Семечки тыквенные жареные", ProviderId = 2 },
+               new Good { Id = 4, Name = "Семечки тыквенные", ProviderId = 2 },
+               new Good { Id = 6, Name = "Помидоры Абхазия", ProviderId = 1 },
+               new Good { Id = 7, Name = "Помидоры Грузия", ProviderId = 1 },
+               new Good { Id = 8, Name = "Помидоры Астрахань", ProviderId = 1 },
+               new Good { Id = 9, Name = "Помидоры Башкортостан", ProviderId = 1 }
+               );
         });
 
         modelBuilder.Entity<Provider>(entity =>
@@ -49,6 +59,10 @@ public partial class WorkTaskContext : DbContext
             entity.ToTable("Provider");
 
             entity.Property(e => e.Name).HasMaxLength(50);
+            entity.HasData(
+                new Provider { Id = 1, Name = "ЗАО \"Лучшие помидоры\"" },
+                new Provider { Id = 2, Name = "АО \"Лучшие семечки\"" }
+                );
         });
 
         modelBuilder.Entity<Supply>(entity =>

@@ -37,6 +37,7 @@ namespace WorkTask.View
             {
                 SupplyWindow window= new SupplyWindow(context, (Provider)ProviderComboBox.SelectedItem);
                 window.Show();
+                Close();
             }
         }
 
